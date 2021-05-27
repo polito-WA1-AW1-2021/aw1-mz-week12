@@ -19,11 +19,11 @@ exports.listCourses = () => {
 };
 
 // get all exams
-exports.listExams = () => {
+exports.listExams = (id) => {
   return new Promise((resolve, reject) => {
-    const sql = 'SELECT coursecode, score, date FROM exam';
+    const sql = 'SELECT coursecode, score, date FROM exam WHERE userId = ?';
 
-    db.all(sql, [], (err, rows) => {
+    db.all(sql, [id], (err, rows) => {
       if (err) {
         reject(err);
         return;
